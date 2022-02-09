@@ -32,6 +32,10 @@ Edit aws/eks/terraform.tfvars to give EKS cluster's input.
 customer-name  = "customername"
 cluster-name   = "customername_cluster1"
 region         = "us-east-1"
-instance_class = "t3.2xlarge"
 </code></pre>
+
+- customer-name : a name to uniquely identify your org
+- cluster-name: a cluster name to uniquely identify Prophecy's EKS cluster
+- region: aws region where you want to deploy Prophecy cluster
+
 
