@@ -6,7 +6,7 @@ A Terraform module to setup a kubernetes cluster in public cloud for Prophecy ID
 - Setup EKS Cluster
 - Setup EFS Storage
 - Bind EKS and EFS using Mount Targets.
-- 
+
 # Prerequisites
 ## Tools
 Install the necessary tools on your machine from where you going to deploy this code:
@@ -92,7 +92,8 @@ When your run the 'apply' command, be sure to review the output before typing 'y
 # Kubeconfig
 To get kubeconfig of cluster, please run below command:
 <pre><code>  
- aws eks --region <region> update-kubeconfig --name <customer-name>-<cluster-name> --alias <customer-name>-<cluster-name>
- aws eks --region us-east-1 update-kubeconfig --name customername-cluster1 --alias customername-cluster1
+ aws eks --region {$region} update-kubeconfig --name {$customer-name}-{$cluster-name} --alias {$customer-name}-{$cluster-name}
+ 
+ e.g. for above inputs : aws eks --region us-east-1 update-kubeconfig --name customername-cluster1 --alias customername-cluster1
 </code></pre>
 
