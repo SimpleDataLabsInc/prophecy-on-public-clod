@@ -30,7 +30,7 @@ Confirm you are authenticated
 Edit aws/eks/terraform.tfvars to give EKS cluster's input. 
 <pre><code>  
 customer-name  = "customername"
-cluster-name   = "customername_cluster1"
+cluster-name   = "cluster1"
 region         = "us-east-1"
 </code></pre>
 
@@ -88,3 +88,11 @@ terraform apply
 </code></pre>
 
 When your run the 'apply' command, be sure to review the output before typing 'yes'. This is critical in the case of using Terraform for upgrades. For an initial deployment, it usually takes 5-10 minutes. 
+
+# Kubeconfig
+To get kubeconfig of cluster, please run below command:
+<pre><code>  
+ aws eks --region <region> update-kubeconfig --name <customer-name>-<cluster-name> --alias <customer-name>-<cluster-name>
+ aws eks --region us-east-1 update-kubeconfig --name customername-cluster1 --alias customername-cluster1
+</code></pre>
+
