@@ -38,4 +38,53 @@ region         = "us-east-1"
 - cluster-name: a cluster name to uniquely identify Prophecy's EKS cluster
 - region: aws region where you want to deploy Prophecy cluster
 
+#### Run Terraform
+<pre><code>  
+terraform init
+terraform plan #review the plan
+terraform apply
+</code></pre>
 
+When your run the 'apply' command, be sure to review the output before typing 'yes'. This is critical in the case of using Terraform for upgrades. For an initial deployment, it usually takes 15-30 minutes. 
+
+### EFS
+Edit aws/efs/terraform.tfvars to give EFS related input. 
+<pre><code>  
+customer-name  = "customername"
+efs-name       = "efs-cluster1"
+region         = "us-east-1"
+</code></pre>
+
+- customer-name : same as aws/eks/terraform.tfvars
+- efs-name: a efs name to uniquely identify Prophecy's EFS
+- region: same as aws/eks/terraform.tfvars
+
+#### Run Terraform
+<pre><code>  
+terraform init
+terraform plan #review the plan
+terraform apply
+</code></pre>
+
+When your run the 'apply' command, be sure to review the output before typing 'yes'. This is critical in the case of using Terraform for upgrades. For an initial deployment, it usually takes 5-10 minutes. 
+
+### EFS Mount Target
+Edit aws/efsmounttarget/terraform.tfvars to give EFS Mount Target related inputs. 
+<pre><code>  
+customer-name  = "customername"
+cluster-name   = "customername_cluster1"
+region         = "us-east-1"
+</code></pre>
+
+- customer-name : same as aws/eks/terraform.tfvars
+- cluster-name: same as aws/eks/terraform.tfvars
+- region: same as aws/eks/terraform.tfvars
+
+#### Run Terraform
+<pre><code>  
+terraform init
+terraform plan #review the plan
+terraform apply
+</code></pre>
+
+When your run the 'apply' command, be sure to review the output before typing 'yes'. This is critical in the case of using Terraform for upgrades. For an initial deployment, it usually takes 5-10 minutes. 
