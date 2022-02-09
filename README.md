@@ -1,4 +1,3 @@
-# prophecy-terraform
 A Terraform module to setup a kubernetes cluster in public cloud for Prophecy IDE deployment. This module supports Terraform v1.x.
 
 # Supported features
