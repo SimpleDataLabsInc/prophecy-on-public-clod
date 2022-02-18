@@ -60,6 +60,11 @@ resource "aws_eks_node_group" "node_group" {
     desired_size = 6
     max_size     = 10
     min_size     = 6
+
+  scaling_config {
+    desired_size = 3
+    max_size     = 10
+    min_size     = 3
   }
 
   depends_on = [
