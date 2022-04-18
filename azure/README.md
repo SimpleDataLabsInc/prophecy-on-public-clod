@@ -1,4 +1,5 @@
 # Permissions & Pre-requisites
+
 ## Permission
 * You require a Contributor or Owner role to install Prophecy IDE via marketplace. A new resource group will be created as part of the installation and all the Prophecy resources will be created inside it. 
 
@@ -35,7 +36,7 @@ If customer chooses to deploy their own certificates, then they need to be ready
 
 ![three](https://user-images.githubusercontent.com/59466885/163797761-771f2925-3efe-4d2e-bdc2-f5fba97db758.jpg)
 
-Once installation is complete, please reach out to your DNS admin and request him to add a Type A entry for the ProphecyURL. More details [here](https://coda.io/d/Prophecy-IDE-Deployment_dXZQH4So4mH/Installation_suw7k).
+Once installation is complete, please reach out to your DNS admin and request him to add a Type A entry for the ProphecyURL.
 
 
 # Installation
@@ -54,9 +55,11 @@ The following steps show you how to get Prophecy for Azure up and running via th
 
 
 ## Step 1: Pre-requisites
+
 Please check the details in Permissions & Pre-requisites section above. 
 
 ## Step 2: Install Prophecy IDE
+
 ### 1. Search Prophecy in the Azure Marketplace.
   1. Click on Get It now
   2. In the Create this app in Azure modal, click Continue. You are directed to the Azure portal.
@@ -66,6 +69,7 @@ Please check the details in Permissions & Pre-requisites section above.
 ![five](https://user-images.githubusercontent.com/59466885/163799424-593e4157-b3e3-4675-ba02-507113fb28fa.jpg)
 
 ### 2. Create Prophecy 
+
 a. Click on Create
 1. In the **Basics** tab (default) enter the following.
      **Project Details**
@@ -89,15 +93,18 @@ a. Click on Create
 ### 3. Review + Create. 
 a. Agree to the terms & conditions and click **Create** for your deployment to be created. 
 
+
 ![seven](https://user-images.githubusercontent.com/59466885/163799594-6ff30896-99ab-466d-8b6b-a3529e72ed4d.jpg)
 
 
 ### 4. Go to resource. 
 a. It takes around 20-30 minutes to finish the installation. Once installation is complete, click on **Go to resource**
 
+
 ![8](https://user-images.githubusercontent.com/59466885/163799813-e269f727-db73-461e-9fe9-ffbb08a1279c.jpg)
 
 b. Click on Parameters and Outputs
+
 
 ![9](https://user-images.githubusercontent.com/59466885/163799821-c547868b-ca28-4f62-851b-777a41368e85.jpg)
 
@@ -113,12 +120,14 @@ If you have chose Option 2 during installation, i.e _Use your own Base Domain an
 
 
 ## Step 3: Launching and setting up Prophecy IDE
+
 ### 1. Launch Prophecy IDE and finish Onboarding
 a. **Login**: Open the prophecyURL and login using adminUser and its credentials 
 ![11](https://user-images.githubusercontent.com/59466885/163799857-0674e97f-a3c1-47b7-9543-7274e16da830.jpg)
 
 
 b. **Onboarding**: 
+
 Click on Setup to finish the onboarding. 
 ![12](https://user-images.githubusercontent.com/59466885/163799864-d0e21bd7-32fe-45ae-ac22-ba562c03f04c.jpg)
 
