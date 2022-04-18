@@ -22,14 +22,17 @@ b. To increase the quota, click on the edit button and increase the quota to som
 
 
 
-TLS
+## TLS
 During installation customer can choose the option where Prophecy can manage certificate and domain for the customer. Customer can also choose to deploy their own TLS certificate and manage domain for Prophecy IDE using their own DNS zones. 
 
-![three](https://user-images.githubusercontent.com/59466885/163797761-771f2925-3efe-4d2e-bdc2-f5fba97db758.jpg)
+
+
+![three_0](https://user-images.githubusercontent.com/59466885/163798189-d6e3eadd-dd3a-4bf2-8d36-3662301ed8ff.jpg)
 
 
 
 If customer chooses to deploy their own certificates, then they need to be ready with below inputs:
 
-Screenshot 2022-02-15 at 9.21.00 PM.png
-Once installation is complete, please reach out to your DNS admin and request him to add a Type A entry for the ProphecyURL. More details here.
+![three](https://user-images.githubusercontent.com/59466885/163797761-771f2925-3efe-4d2e-bdc2-f5fba97db758.jpg)
+
+Once installation is complete, please reach out to your DNS admin and request him to add a Type A entry for the ProphecyURL. More details [here](https://coda.io/d/Prophecy-IDE-Deployment_dXZQH4So4mH/Installation_suw7k).
