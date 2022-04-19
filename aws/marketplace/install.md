@@ -48,14 +48,11 @@ aws ecr get-login-password \
 
 mkdir awsmp-chart && cd awsmp-chart
 
-helm pull oci://709825985650.dkr.ecr.us-east-1.amazonaws.com/prophecy/prophecy-marketplace --version 0.1.1
+helm pull oci://709825985650.dkr.ecr.us-east-1.amazonaws.com/prophecy/prophecy-marketplace --version 0.1.3
 
 tar xf $(pwd)/* && find $(pwd) -maxdepth 1 -type f -delete
 
 helm install prophecy \
     --namespace prophecy ./* \
-    --set platform.wildcardCert.tlsKey=<ENTER_VALUE_HERE> \
-    --set platform.wildcardCert.tlsCert=<ENTER_VALUE_HERE> \
-    --set customer.name=<ENTER_VALUE_HERE> \
-    --set prophecy.rootUrl=cloud.prophecy.io 
+    --set customer.name=<ENTER_VALUE_HERE> 
 ```
