@@ -52,7 +52,7 @@ helm pull oci://709825985650.dkr.ecr.us-east-1.amazonaws.com/prophecy/prophecy-m
 
 tar xf $(pwd)/* && find $(pwd) -maxdepth 1 -type f -delete
 
-helm install prophecy \
+helm install prophecyide \
     --namespace prophecy ./* \
     --set customer.name=<ENTER_VALUE_HERE> 
 ```
