@@ -26,10 +26,12 @@ We recommend doing this via eksctl. More detail and how to set up the appropriat
 kubectl create namespace prophecy
             
 eksctl create iamserviceaccount \
-    --name prophecy \
+    --name prophecysametering \
     --namespace prophecy \
     --cluster <ENTER_YOUR_CLUSTER_NAME_HERE> \
-    --attach-policy-arn IAM_policy_ARN \
+    --attach-policy-arn arn:aws:iam::aws:policy/AWSMarketplaceMeteringFullAccess \
+    --attach-policy-arn arn:aws:iam::aws:policy/AWSMarketplaceMeteringRegisterUsage \
+    --attach-policy-arn arn:aws:iam::aws:policy/service-role/AWSLicenseManagerConsumptionPolicy \
     --approve \
     --override-existing-serviceaccounts
 ```
