@@ -4,7 +4,7 @@
 
 ## Prerequisites
 
-1. Use this template: https://s3.us-east-2.amazonaws.com/cf-templates-13rsro0rulmq6-us-east-2/2022109PjH-amazon-eks-entrypoint-new-vpc.template.yaml
+1. Use this template: https://prophecy-public-bucket.s3.us-east-2.amazonaws.com/amazon-eks-entrypoint-new-vpc.template.yaml
 
 2. Check out all the availability zones for the subnets in the VPC
 
