@@ -4,7 +4,9 @@
 
 ## Prerequisites
 
-1. Use this template: https://prophecy-public-bucket.s3.us-east-2.amazonaws.com/amazon-eks-entrypoint-new-vpc.template.yaml
+1. Use this template: https://prophecy-public-bucket.s3.us-east-2.amazonaws.com/amazon-eks-entrypoint-new-vpc.template.yaml as Amazon S3 URL as below:
+ 
+    <image src="https://prophecy-public-bucket.s3.us-east-2.amazonaws.com/Screenshot+2022-04-29+at+11.54.12+AM.png" width="800">
 
 2. Check out all the availability zones for the subnets in the VPC
 
