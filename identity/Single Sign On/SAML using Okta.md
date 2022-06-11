@@ -14,7 +14,8 @@ This document describes how to configure SAML using Okta as the identity provide
 - Application username: Email 
 - Attribute Statements: Please add two attributes name and email with the same details as given in below screenshot. 
 
-<img width="564" alt="Screenshot 2022-06-11 at 5 30 31 PM" src="https://user-images.githubusercontent.com/59466885/173187033-f633a314-dfc3-4a13-854b-925bed111157.png">
+![Screenshot 2022-06-11 at 5 30 31 PM](https://user-images.githubusercontent.com/59466885/173188607-ed5c89c9-8fcc-47a2-ba8c-966d45729b50.png)
+
 
 - Click Next.
 - Select I’m an Okta customer adding an internal app.
