@@ -8,7 +8,6 @@ This document describes how to configure Azure Active Directory as the identity 
 
 - Click "New Registration"
 - Give name as "ProphecyAzureADApp"
-- Set App name to "Prophecy SAML App" and click Next.
 - Supported account type as "Accounts in this organizational directory only (xxxxx only - Single tenant)"
 - Redirect URI : Choose "Web" in drop down
 - Redirect URI : https://your-prophecy-ide-url/api/oauth/azureadCallback
