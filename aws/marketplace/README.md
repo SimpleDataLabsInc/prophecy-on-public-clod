@@ -114,7 +114,7 @@ helm install prophecyide \
 ## Step 3: Launching and setting up Prophecy IDE
 You need to connect to EKS cluster to get the Prophecy IDE URL and login credentials. If you have chosen option of installing Prophecy IDE in an existing k8s cluster then you are already connected to k8s cluster. For Quick launch user, please run below commands on your laptop to connect to your kubernetes cluster.
 ```
-aws eks --region us-east-1 update-kubeconfig --name <eksclustername>
+aws eks --region <region> update-kubeconfig --name <eksclustername>
 Please use the same eks cluster name which you have given in cloudformation stack. 
 ```
 
