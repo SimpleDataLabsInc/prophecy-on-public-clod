@@ -102,13 +102,13 @@ aws ecr get-login-password \
 
 mkdir awsmp-chart && cd awsmp-chart
 
-helm pull oci://709825985650.dkr.ecr.us-east-1.amazonaws.com/prophecy/prophecy-marketplace --version 0.1.3
+helm pull oci://709825985650.dkr.ecr.us-east-1.amazonaws.com/prophecy/prophecy-marketplace --version 2.1.1
 
 tar xf $(pwd)/* && find $(pwd) -maxdepth 1 -type f -delete
 
 helm install prophecyide \
     --namespace prophecy ./* \
-    --set customer.name=<ENTER_VALUE_HERE> 
+    --set global.customer.name=<ENTER_VALUE_HERE> 
 ```
 
 ## Step 3: Launching and setting up Prophecy IDE
