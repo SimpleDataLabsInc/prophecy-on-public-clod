@@ -24,16 +24,19 @@ By default this link will take you to us-east2 availability zone. Please change 
 
 <img width="1035" alt="Screenshot 2022-05-10 at 3 56 20 PM" src="https://user-images.githubusercontent.com/59466885/167611360-84bd98c3-ffec-4c18-9786-ef0501eb696b.png">
 
+**6**. Configure access to the Kubernetes API server endpoint from outside of your VPC. 
+Please mark EKS public access endpoint as Enabled. If you are keeping it disabled, you can access the cluster within your VPC only.
 
-**6**. Click Next to go to next screen. No mandatory input required here.
 
 **7**. Click Next to go to next screen. No mandatory input required here.
+
+**8**. Click Next to go to next screen. No mandatory input required here.
   
-**8**. Before creating the stack, please acknowledge to AWS cloudformation conditions by clicking on these checkboxes.
+**9**. Before creating the stack, please acknowledge to AWS cloudformation conditions by clicking on these checkboxes.
   <img width="1053" alt="Screenshot 2022-05-10 at 4 17 11 PM" src="https://user-images.githubusercontent.com/59466885/167611802-64fcb681-f207-4d62-af7b-afb4cc7fe154.png">
 
       
-**9**. Once cluster is set up, you can add the cluster config via this command
+**10**. Once cluster is set up, you can add the cluster config via this command
       
    ```aws eks --region us-east-2 update-kubeconfig --name $CLUSTER_NAME --alias $CLUSTER_NAME```
       
