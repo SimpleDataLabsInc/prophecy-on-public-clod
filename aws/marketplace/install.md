@@ -88,6 +88,27 @@ eksctl create iamserviceaccount \
     --override-existing-serviceaccounts
 ```
 
+##### Deploy EBS CSI provisioner on EKS
+
+Please refer this link in case you need further information regarding the role: https://docs.aws.amazon.com/eks/latest/userguide/csi-iam-role.html
+
+```
+eksctl create iamserviceaccount \
+  --name ebs-csi-controller-sa \
+  --namespace kube-system \
+  --cluster <ENTER_YOUR_CLUSTER_NAME_HERE> \
+  --attach-policy-arn arn:aws:iam::aws:policy/service-role/AmazonEBSCSIDriverPolicy \
+  --approve \
+  --role-only \
+  --role-name AmazonEKS_EBS_CSI_DriverRole
+```
+
+Deploy the add-on as per this document: https://docs.aws.amazon.com/eks/latest/userguide/managing-ebs-csi.html
+
+```
+eksctl create addon --name aws-ebs-csi-driver --cluster <ENTER_YOUR_CLUSTER_NAME_HERE> --service-account-role-arn arn:aws:iam::<AWS ACCOUNT ID>:role/AmazonEKS_EBS_CSI_DriverRole --force
+```
+
 #####  Deploy Prophecy with attached IAM role
 
 Please run below command to deploy Prophecy to your EKS cluster.
