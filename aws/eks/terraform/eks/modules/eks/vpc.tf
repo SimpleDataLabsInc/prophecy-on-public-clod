@@ -12,8 +12,8 @@ resource "aws_vpc" "vpc_id" {
   cidr_block = "10.0.0.0/16"
   enable_dns_hostnames = true
   tags = tomap({
-    "Name" = "eks-vpc-${var.customer-name}-${var.cluster-name}",
-    "kubernetes.io/cluster/${var.customer-name}-${var.cluster-name}" =  "shared"
+    "Name" = "eks-vpc-${var.customer_name}-${var.cluster_name}",
+    "kubernetes.io/cluster/${var.customer_name}-${var.cluster_name}" =  "shared"
     }
   )
 }
@@ -27,8 +27,8 @@ resource "aws_subnet" "subnet_id" {
   vpc_id            = aws_vpc.vpc_id.id
 
   tags = tomap({
-    "Name" = "eks-subnet-${var.customer-name}-${var.cluster-name}",
-    "kubernetes.io/cluster/${var.customer-name}-${var.cluster-name}" = "shared",
+    "Name" = "eks-subnet-${var.customer_name}-${var.cluster_name}",
+    "kubernetes.io/cluster/${var.customer_name}-${var.cluster_name}" = "shared",
     }
   )
 }
@@ -37,7 +37,7 @@ resource "aws_internet_gateway" "gw_id" {
   vpc_id = aws_vpc.vpc_id.id
 
   tags = {
-    Name =  "eks-internetgateway-${var.customer-name}-${var.cluster-name}",
+    Name =  "eks-internetgateway-${var.customer_name}-${var.cluster_name}",
   }
 }
 
