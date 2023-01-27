@@ -1,0 +1,18 @@
+Tagged Resources
+
+./tag_dependent_resources.sh prophecy-development eks-prophecy-deployment-ng-2a-f8c2cc12-21ca-06c8-0853-3a5ff55d1afd us-west-1 environment dev
+
+./tag_dependent_resources.sh EKS-6NZZ4VOC eks-Default-5ec23ce3-951a-881b-ef30-2fd21e7f2355 us-west-2 billing poc
+./tag_dependent_resources.sh EKS-B469LJ2L eks-Default-c6c287b5-9887-1568-fa42-60c1f40a58dd us-west-2 billing poc
+
+./tag_dependent_resources.sh airtel-poc "" ap-south-1 billing poc
+./tag_dependent_resources.sh barclays-capgemini eks-Default-bcc158c5-eab3-d01b-6d44-0da9527f5697 us-east-1 billing poc (25)
+./tag_dependent_resources.sh capital-one eks-Default-3ac158df-e225-f7a9-5420-a7879f20e3c0 us-east-1 billing poc (31)
+
+./tag_dependent_resources.sh management-saascluster eks-3ac0ca49-6917-64ba-8048-7f7e7d0ae5fa us-east-2 billing sales
+./tag_dependent_resources.sh management-saascluster eks-b6c0ca4c-0100-dcc2-40e1-7b4a9a5b419e us-east-2 billing sales (32)
+
+./tag_dependent_resources.sh management-managementcluster eks-6ac2cb16-14c6-ba33-d600-57b519ab5ae7 us-west-2 billing sales
+./tag_dependent_resources.sh management-managementcluster eks-76bbc7d5-0f7e-8cec-3c31-33ec30367d89 us-west-2 billing sales (44)
+
+aws autoscaling create-or-update-tags --region us-west-2 --tags ResourceId=$asgName,ResourceType=auto-scaling-group,Key=Name,Value=$asgName,PropagateAtLaunch=false ResourceId=$asgName,ResourceType=auto-scaling-group,Key=$tagKey,Value=$tagValue,PropagateAtLaunch=true
