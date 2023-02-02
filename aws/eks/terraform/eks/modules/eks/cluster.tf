@@ -8,7 +8,7 @@
 # IAM role and policy to allow the EKS service to manage or retrieve
 # data from other AWS services.
 resource "aws_iam_role" "cluster_iam" {
-  name = "eks-iam-${var.customer-name}-${var.cluster-name}" 
+  name = "eks-iam-${var.customer_name}-${var.cluster_name}" 
 
   assume_role_policy = <<POLICY
 {
@@ -39,7 +39,7 @@ resource "aws_iam_role_policy_attachment" "cluster-AmazonEKSServicePolicy" {
 # security group controls networking access to the Kubernetes masters. 
 # later this will be configured with an ingress rule to allow traffic from the worker nodes.
 resource "aws_security_group" "cluster-secgrp" {
-  name = "eks-secgrp-${var.customer-name}-${var.cluster-name}" 
+  name = "eks-secgrp-${var.customer_name}-${var.cluster_name}" 
   description = "Cluster communication with worker nodes"
   vpc_id      = aws_vpc.vpc_id.id
 
@@ -51,7 +51,7 @@ resource "aws_security_group" "cluster-secgrp" {
   }
 
   tags = {
-    Name = "eks-secgrp-${var.customer-name}-${var.cluster-name}" 
+    Name = "eks-secgrp-${var.customer_name}-${var.cluster_name}" 
   }
 }
 
@@ -65,13 +65,19 @@ resource "aws_security_group_rule" "cluster-ingress-workstation-https" {
   type              = "ingress"
 }
 
+locals {
+  private_subnet_list = aws_subnet.private_subnet[*].id
+  subnet_list = concat(local.private_subnet_list, [aws_subnet.public_subnet.id])
+} 
+
 resource "aws_eks_cluster" "cluster" {
-  name     = "${var.customer-name}-${var.cluster-name}"
+  name     = "${var.customer_name}-${var.cluster_name}"
   role_arn = aws_iam_role.cluster_iam.arn
+  version = "${var.cluster_version}"
 
   vpc_config {
     security_group_ids = [aws_security_group.cluster-secgrp.id]
-    subnet_ids         = aws_subnet.subnet_id[*].id
+    subnet_ids         = local.subnet_list 
   }
 
   depends_on = [

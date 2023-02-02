@@ -7,7 +7,7 @@
 # IAM role and policy to allow the worker nodes to manage or retrieve data from other AWS services. 
 # It is used by Kubernetes to allow worker nodes to join the cluster.
 resource "aws_iam_role" "node_iam" {
-  name = "eks-node-iam-${var.customer-name}-${var.cluster-name}"
+  name = "eks-node-iam-${var.customer_name}-${var.cluster_name}"
 
   assume_role_policy = <<POLICY
 {
@@ -51,15 +51,15 @@ resource "aws_iam_role_policy_attachment" "node-AmazonEC2ContainerRegistryReadOn
 
 resource "aws_eks_node_group" "node_group" {
   cluster_name    = aws_eks_cluster.cluster.name
-  node_group_name = "node-group-${var.customer-name}-${var.cluster-name}"
+  node_group_name = "node-group-${var.customer_name}-${var.cluster_name}"
   node_role_arn   = aws_iam_role.node_iam.arn
-  subnet_ids      = aws_subnet.subnet_id[*].id
+  subnet_ids      = aws_subnet.private_subnet[*].id
   instance_types  = ["t3.2xlarge"]
 
   scaling_config {
-    desired_size = 6
-    max_size     = 10
-    min_size     = 6
+    desired_size = var.autoscaling_options.desired_size
+    max_size     = var.autoscaling_options.max_size
+    min_size     = var.autoscaling_options.min_size
   }
 
   depends_on = [
