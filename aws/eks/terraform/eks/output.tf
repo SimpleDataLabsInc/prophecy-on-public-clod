@@ -32,10 +32,16 @@ output "oidc_provider" {
   value = module.eks_cluster.oidc_provider
 }
 
-output "subnets" {
-  description = "List of IDs of subnets with this cluster"
-  value       = module.eks_cluster.subnets
+output "public_subnets" {
+  description = "List of IDs of public subnets with this cluster"
+  value       = module.eks_cluster.public_subnets
 }
+
+output "private_subnets" {
+  description = "List of IDs of subnets with this cluster"
+  value       = module.eks_cluster.private_subnets
+}
+
 
 output "vpc_id" {
   description = "VPC ID"

@@ -14,7 +14,7 @@ variable "cluster_name" {
 
 variable "cluster_version" {
   description = "Kubernetes version to deploy"
-  default = "1.21"
+  default = "1.24"
   type    = string
 }
 
@@ -36,4 +36,16 @@ variable "autoscaling_options" {
     min_size = 2
     max_size = 4
   }
+}
+
+variable "public_subnet_cidr" {
+  description = "CIDR of public subnet"
+  type        = string
+  default     = "10.0.0.0/24"
+}
+
+variable "private_subnet_cidrs" {
+  description = "CIDR of private subnets"
+  type        = list(string)
+  default     = ["10.0.1.0/24","10.0.2.0/24"]
 }

@@ -18,13 +18,22 @@ resource "aws_vpc" "vpc_id" {
   )
 }
 
-resource "aws_subnet" "subnet_id" {
-  count = 2
+resource "aws_subnet" "public_subnet" {
+  depends_on = [
+    aws_vpc.vpc_id
+  ]
 
-  availability_zone = data.aws_availability_zones.available.names[count.index]
-  cidr_block        = "10.0.${count.index}.0/24"
-  map_public_ip_on_launch = true
+  # VPC in which subnet has to be created!
   vpc_id            = aws_vpc.vpc_id.id
+  
+  # IP Range of this subnet
+  cidr_block        = var.public_subnet_cidr
+  
+  # Data Center of this subnet.
+  availability_zone = data.aws_availability_zones.available.names[0]
+  
+  # Enabling automatic public IP assignment on instance launch!
+  map_public_ip_on_launch = true
 
   tags = tomap({
     "Name" = "eks-subnet-${var.customer_name}-${var.cluster_name}",
@@ -33,15 +42,44 @@ resource "aws_subnet" "subnet_id" {
   )
 }
 
+resource "aws_subnet" "private_subnet" {
+  depends_on = [
+    aws_vpc.vpc_id,
+    aws_subnet.public_subnet
+  ]
+  count = length(var.private_subnet_cidrs)
+  
+  # VPC in which subnet has to be created!
+  vpc_id = aws_vpc.vpc_id.id
+  
+  # IP Range of this subnet
+  cidr_block = var.private_subnet_cidrs[count.index]
+  
+  # Data Center of this subnet.
+  availability_zone = data.aws_availability_zones.available.names[count.index]
+  
+  tags = tomap({
+    "Name" = "eks-subnet-${var.customer_name}-${var.cluster_name}",
+    "kubernetes.io/cluster/${var.customer_name}-${var.cluster_name}" = "shared",
+    }
+  )
+}
+
 resource "aws_internet_gateway" "gw_id" {
+  depends_on = [
+    aws_vpc.vpc_id,
+    aws_subnet.public_subnet
+  ]
+
   vpc_id = aws_vpc.vpc_id.id
 
   tags = {
     Name =  "eks-internetgateway-${var.customer_name}-${var.cluster_name}",
+    "kubernetes.io/cluster/${var.customer_name}-${var.cluster_name}" = "shared",
   }
 }
 
-resource "aws_route_table" "route_id" {
+resource "aws_route_table" "public_route_table_id" {
   vpc_id = aws_vpc.vpc_id.id
 
   route {
@@ -50,9 +88,49 @@ resource "aws_route_table" "route_id" {
   }
 }
 
-resource "aws_route_table_association" "route_table_id" {
-  count = 2
+resource "aws_route_table_association" "public_route_table_association_id" {
+  subnet_id      = aws_subnet.public_subnet.id
+  route_table_id = aws_route_table.public_route_table_id.id
+}
 
-  subnet_id      = aws_subnet.subnet_id.*.id[count.index]
-  route_table_id = aws_route_table.route_id.id
+# Creating an Elastic IP for the NAT Gateway!
+resource "aws_eip" "nat_eip" {
+  vpc = true
+}
+
+# Creating a NAT Gateway!
+resource "aws_nat_gateway" "natgw_id" {
+  depends_on = [
+    aws_eip.nat_eip
+  ]
+
+  # Allocating the Elastic IP to the NAT Gateway!
+  allocation_id = aws_eip.nat_eip.id
+  
+  # Associating it in the Public Subnet!
+  subnet_id = aws_subnet.public_subnet.id
+  tags = {
+    Name =  "eks-natgateway-${var.customer_name}-${var.cluster_name}",
+    "kubernetes.io/cluster/${var.customer_name}-${var.cluster_name}" = "shared",
+  }
+}
+
+# Creating a Route Table for the Nat Gateway!
+resource "aws_route_table" "private_route_table_id" {
+  depends_on = [
+    aws_nat_gateway.natgw_id
+  ]
+
+  vpc_id = aws_vpc.vpc_id.id
+
+  route {
+    cidr_block = "0.0.0.0/0"
+    nat_gateway_id = aws_nat_gateway.natgw_id.id
+  }
+}
+
+resource "aws_route_table_association" "private_route_table_association_id" {
+  count = length(var.private_subnet_cidrs)
+  subnet_id      = aws_subnet.private_subnet[count.index].id
+  route_table_id = aws_route_table.private_route_table_id.id
 }

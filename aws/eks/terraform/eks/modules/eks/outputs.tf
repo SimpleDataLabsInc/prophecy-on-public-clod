@@ -75,9 +75,14 @@ output "oidc_provider" {
   value = aws_iam_openid_connect_provider.cluster.id
 }
 
-output "subnets" {
+output "public_subnets" {
   description = "List of IDs of subnets with this cluster"
-  value       = aws_subnet.subnet_id.*.id
+  value       = aws_subnet.public_subnet.id
+}
+
+output "private_subnets" {
+  description = "List of IDs of subnets with this cluster"
+  value       = aws_subnet.private_subnet[*].id
 }
 
 output "vpc_id" {
